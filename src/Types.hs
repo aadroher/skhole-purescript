@@ -2,8 +2,6 @@ module Types where
 
 import Data.Time
 import RIO
-import qualified RIO.Map as M
-import qualified RIO.Map.Partial as M'
 import RIO.Process
 import qualified RIO.Set as S
 
@@ -26,21 +24,6 @@ data Meeting = Meeting
   }
   deriving (Show, Eq)
 
-nameToNum :: M.Map DayOfWeek Int
-nameToNum =
-  M.fromList
-    [ (Monday, 0),
-      (Tuesday, 1),
-      (Wednesday, 2),
-      (Thursday, 3),
-      (Friday, 4),
-      (Saturday, 5),
-      (Sunday, 6)
-    ]
-
-instance Ord DayOfWeek where
-  compare d0 d1 = compare (nameToNum M'.! d0) (nameToNum M'.! d1)
-
 defaultDaysOfWeek :: Set DayOfWeek
 defaultDaysOfWeek =
   S.fromList
@@ -53,16 +36,29 @@ defaultDaysOfWeek =
       Sunday
     ]
 
+type TimeSlotLength = Int
+
+defaultTimeSlotLength :: TimeSlotLength
+defaultTimeSlotLength = 1
+
 data Calendar = Calendar
   { calendarName :: Text,
     calendarMeetings :: Set Meeting,
-    calendarDaysOfWeeek :: Set DayOfWeek
+    calendarDaysOfWeeek :: Set DayOfWeek,
+    calendarTimeSlotLength :: TimeSlotLength
+  }
+  deriving (Show, Eq)
+
+data Organisation = Organisation
+  { organisationName :: Text,
+    organisationCalendars :: Set Calendar,
+    organisationPersons :: Set Person
   }
   deriving (Show, Eq)
 
 -- | Command line arguments
-data Options = Options
-  { optionsVerbose :: !Bool
+newtype Options = Options
+  { optionsVerbose :: Bool
   }
 
 data App = App
