@@ -36,16 +36,29 @@ defaultDaysOfWeek =
       Sunday
     ]
 
+type TimeSlotLength = Int
+
+defaultTimeSlotLength :: TimeSlotLength
+defaultTimeSlotLength = 1
+
 data Calendar = Calendar
   { calendarName :: Text,
     calendarMeetings :: Set Meeting,
-    calendarDaysOfWeeek :: Set DayOfWeek
+    calendarDaysOfWeeek :: Set DayOfWeek,
+    calendarTimeSlotLength :: TimeSlotLength
+  }
+  deriving (Show, Eq)
+
+data Organisation = Organisation
+  { organisationName :: Text,
+    organisationCalendars :: Set Calendar,
+    organisationPersons :: Set Person
   }
   deriving (Show, Eq)
 
 -- | Command line arguments
-data Options = Options
-  { optionsVerbose :: !Bool
+newtype Options = Options
+  { optionsVerbose :: Bool
   }
 
 data App = App
