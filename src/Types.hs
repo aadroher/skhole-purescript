@@ -2,8 +2,6 @@ module Types where
 
 import Data.Time
 import RIO
-import qualified RIO.Map as M
-import qualified RIO.Map.Partial as M'
 import RIO.Process
 import qualified RIO.Set as S
 
@@ -25,21 +23,6 @@ data Meeting = Meeting
     meetingRoom :: Room
   }
   deriving (Show, Eq)
-
-nameToNum :: M.Map DayOfWeek Int
-nameToNum =
-  M.fromList
-    [ (Monday, 0),
-      (Tuesday, 1),
-      (Wednesday, 2),
-      (Thursday, 3),
-      (Friday, 4),
-      (Saturday, 5),
-      (Sunday, 6)
-    ]
-
-instance Ord DayOfWeek where
-  compare d0 d1 = compare (nameToNum M'.! d0) (nameToNum M'.! d1)
 
 defaultDaysOfWeek :: Set DayOfWeek
 defaultDaysOfWeek =
