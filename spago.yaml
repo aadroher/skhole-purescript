@@ -7,6 +7,21 @@ package:
   test:
     main: Test.Main
     dependencies: []
+  bundle:
+    minify: false
+    # Entrypoint for the bundle
+    module: Main
+    # The path of the bundle file
+    outfile: "static/index.js"
+    # Possible values are 'node' or 'browser'
+    platform: browser
+    # Possible values are 'app' or 'module'
+    type: "app"
+    # Any other flags that should be passed to the bundler.
+    # You can use this to e.g. pass `--external` flags to esbuild:
+    extraArgs:
+      - "--external:ssh2"
+
 workspace:
   packageSet:
     registry: 60.2.1
