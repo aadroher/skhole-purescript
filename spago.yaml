@@ -2,8 +2,11 @@ package:
   name: skhole-purescript
   dependencies:
     - console
+    - debug
     - effect
     - prelude
+    - web-dom
+    - web-html
   test:
     main: Test.Main
     dependencies: []
