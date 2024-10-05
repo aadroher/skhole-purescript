@@ -8,6 +8,4 @@
 /.purs*
 /.psa*
 /.spago
-/static/
-/.parcel-cache/
 /dist/
