@@ -1,0 +1,1 @@
+- [ ] Check whether esbuild should be fine for dev hot reloading with source maps. See https://injuly.in/blog/purescript-setup/index.html
