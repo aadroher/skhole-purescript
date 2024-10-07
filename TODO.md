@@ -1,2 +1,3 @@
 - [x] Check whether esbuild should be fine for dev hot reloading with source maps. See https://injuly.in/blog/purescript-setup/index.html
 - [ ] Use or get inspiration from Oak. See: https://github.com/ehrenmurdick/purescript-oak 
+- [ ] Roll out my own called Zelkova. See: https://en.wikipedia.org/wiki/Zelkova
