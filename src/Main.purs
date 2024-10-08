@@ -19,10 +19,6 @@ import Web.HTML.Window (document)
 appId ∷ String
 appId = "app"
 
-getElementById' ∷ String → ParentNode → Effect (Maybe Element)
-getElementById' id node = querySelector (QuerySelector $ "#" <> id) node
-
-
 main :: Effect Unit
 main = do
   log "This is some cool reloading app! Let us see if it works!"
