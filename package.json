@@ -18,7 +18,8 @@
     "build": "spago build",
     "prestart": "npm run build",
     "start": "parcel serve public/index.html --open",
-    "dev": "concurrently 'watchexec -e purs,js,yaml -- spago build' 'node ./build.mjs --watch'"
+    "dev": "concurrently 'watchexec -e purs,js,yaml -- spago build' 'node ./build.mjs --watch'",
+    "test": "watchexec -e purs,js,yaml -- spago test"
   },
   "author": "",
   "license": "ISC",

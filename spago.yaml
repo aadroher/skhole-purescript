@@ -11,6 +11,7 @@ package:
     main: Test.Main
     dependencies:
       - spec
+      - spec-node
   bundle:
     minify: false
     # Entrypoint for the bundle

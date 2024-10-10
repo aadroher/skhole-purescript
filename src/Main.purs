@@ -20,7 +20,7 @@ appId ∷ String
 appId = "app"
 
 add2 ∷ Int → Int
-add2 x = x + 2
+add2 x = x + 3
 
 main :: Effect Unit
 main = do
