@@ -9,7 +9,8 @@ package:
     - web-html
   test:
     main: Test.Main
-    dependencies: []
+    dependencies:
+      - spec
   bundle:
     minify: false
     # Entrypoint for the bundle

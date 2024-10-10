@@ -1,4 +1,4 @@
-module Main where
+module Main (add2, main) where
 
 import Prelude
 
@@ -18,6 +18,9 @@ import Web.HTML.Window (document)
 
 appId ∷ String
 appId = "app"
+
+add2 ∷ Int → Int
+add2 x = x + 2
 
 main :: Effect Unit
 main = do
