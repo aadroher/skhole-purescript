@@ -7,9 +7,23 @@
     }
   ],
   [
+    "Zelkov.Signal constant yields once",
+    {
+      "timestamp": "1728596628167.0",
+      "success": true
+    }
+  ],
+  [
+    "Zelkov.Signal run tests",
+    {
+      "timestamp": "1728596628167.0",
+      "success": true
+    }
+  ],
+  [
     "run tests",
     {
-      "timestamp": "1728594668192.0",
+      "timestamp": "1728594773869.0",
       "success": true
     }
   ]

@@ -11,25 +11,34 @@ import Prelude
 import Data.Either (Either(..))
 import Data.Function.Uncurried (Fn4, runFn4)
 import Data.List (List(..), fromFoldable, toUnfoldable)
+import Data.Number (sign)
+import Debug (trace, traceM)
 import Effect (Effect)
 import Effect.Aff (Aff, Canceler, Error, makeAff, nonCanceler)
 import Effect.Exception (error)
 import Effect.Ref (Ref, write, read, new)
-import Zelkova.Signal (Signal, constant, (~>), runSignal)
 import Test.TestUtils (Test, timeout)
+import Zelkova.Signal (Signal, constant, (~>), runSignal)
 
 
 type Tail a = Ref (Array a)
 
 expectFn :: forall a. Eq a => Show a => Signal a -> Array a -> Test
 expectFn sig vals = makeAff \resolve -> do
+  -- traceM "sig:"
+  -- traceM sig
+  traceM vals
   remaining <- new vals
+  -- traceM remaining
   let getNext val = do
+        traceM val
         nextValArray <- read remaining
         let nextVals = fromFoldable nextValArray
         case nextVals of
           Cons x xs -> do
-            if x /= val then resolve $ Left $ error $ "expected " <> show x <> " but got " <> show val
+            if x /= val 
+              then resolve $ 
+                Left $ error $ "expected " <> show x <> " but got " <> show val
               else case xs of
                 Nil -> resolve $ Right unit
                 _ ->
