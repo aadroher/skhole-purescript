@@ -7,7 +7,18 @@ module Test.Signal
   ) where
 
 import Prelude
-
+  ( ($)
+  , (/=)
+  , (<>)
+  , show
+  , pure
+  , unit
+  , class Show
+  , class Eq
+  , discard
+  , bind
+  , Unit
+  )
 import Data.Either (Either(..))
 import Data.Function.Uncurried (Fn4, runFn4)
 import Data.List (List(..), fromFoldable, toUnfoldable)
@@ -20,32 +31,36 @@ import Effect.Ref (Ref, write, read, new)
 import Test.TestUtils (Test, timeout)
 import Zelkova.Signal (Signal, constant, (~>), runSignal)
 
-
-type Tail a = Ref (Array a)
+type Tail a
+  = Ref (Array a)
 
 expectFn :: forall a. Eq a => Show a => Signal a -> Array a -> Test
-expectFn sig vals = makeAff \resolve -> do
-  -- traceM "sig:"
-  -- traceM sig
-  traceM vals
-  remaining <- new vals
-  -- traceM remaining
-  let getNext val = do
+expectFn sig vals =
+  makeAff \resolve -> do
+    traceM vals
+    remaining <- new vals
+    let
+      getNext val = do
         traceM val
         nextValArray <- read remaining
-        let nextVals = fromFoldable nextValArray
+        let
+          nextVals = fromFoldable nextValArray
         case nextVals of
           Cons x xs -> do
-            if x /= val 
-              then resolve $ 
-                Left $ error $ "expected " <> show x <> " but got " <> show val
-              else case xs of
-                Nil -> resolve $ Right unit
-                _ ->
-                  write (toUnfoldable xs) remaining 
+            if x /= val then
+              resolve
+                $ Left
+                $ error
+                $ "expected "
+                <> show x
+                <> " but got "
+                <> show val
+            else case xs of
+              Nil -> resolve $ Right unit
+              _ -> write (toUnfoldable xs) remaining
           Nil -> resolve $ Left $ error "unexpected emptiness"
-  runSignal $ sig ~> getNext
-  pure nonCanceler
+    runSignal $ sig ~> ?getNext
+    pure nonCanceler
 
 expect :: forall a. Eq a => Show a => Int -> Signal a -> Array a -> Test
 expect time sig vals = timeout time $ expectFn sig vals
