@@ -9,6 +9,7 @@
             "debug",
             "effect",
             "prelude",
+            "unsafe-coerce",
             "web-dom",
             "web-html"
           ],

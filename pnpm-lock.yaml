@@ -26,6 +26,9 @@ importers:
       purs-tidy:
         specifier: ^0.11.0
         version: 0.11.0
+      purty:
+        specifier: ^7.0.0
+        version: 7.0.0
       spago:
         specifier: ^0.93.40
         version: 0.93.40
@@ -913,6 +916,11 @@ packages:
 
   purs-tidy@0.11.0:
     resolution: {integrity: sha512-HZ8AS6J7Ka2YVl6Gr/H5NV17TU10yGYUTxVwRd5tKuwsVdFZewXSzZ/HTpWrkhdR2gxSVk0BdnpJhyu//oRc+w==}
+    hasBin: true
+
+  purty@7.0.0:
+    resolution: {integrity: sha512-gHHghPEjRY39GUJ8KnOMRfPArJILGCXwEhX6BmEdNiLgZuCjLLBLyawGiKFjYMfy8H5Dsk5NbgwIGslrPrernA==}
+    os: [linux, darwin, win32]
     hasBin: true
 
   queue-microtask@1.2.3:
@@ -2092,7 +2100,7 @@ snapshots:
   process-nextick-args@2.0.1: {}
 
   promise-inflight@1.0.1(bluebird@3.7.2):
-    dependencies:
+    optionalDependencies:
       bluebird: 3.7.2
 
   promise-retry@2.0.1:
@@ -2152,6 +2160,8 @@ snapshots:
       - supports-color
 
   purs-tidy@0.11.0: {}
+
+  purty@7.0.0: {}
 
   queue-microtask@1.2.3: {}
 
