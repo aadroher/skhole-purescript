@@ -8,3 +8,5 @@ newtype Event a
 
 instance functorEvent :: Functor Event where
   map f (Event e) = Event \g -> e (g <<< f)
+
+-- intance applyEvent :: Apply Event where 
