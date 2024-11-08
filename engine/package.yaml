@@ -1,10 +1,10 @@
 name: optimist
 version: 0.1.0.0
-github: githubuser/optimist
+github: aadroher/skhole
 license: BSD3
-author: Author name here
-maintainer: example@example.com
-copyright: 2021 Author name here
+author: Armand Adroher
+maintainer: aadroher@gmail.com
+copyright: 2021 Armand Adroher
 
 extra-source-files:
   - README.md
